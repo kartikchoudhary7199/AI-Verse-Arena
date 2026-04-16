@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* ── Custom design tokens ─────────────────────────────────── */
+:root {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── Base resets ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* ── Scrollbar styling ────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
+.dark ::-webkit-scrollbar-thumb { background: #374151; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+/* ── Markdown prose inside response blocks ────────────────── */
+.prose-response {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: inherit;
+}
+.prose-response h1, .prose-response h2, .prose-response h3 {
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.prose-response h1 { font-size: 1.125rem; }
+.prose-response h2 { font-size: 1rem; }
+.prose-response h3 { font-size: 0.9375rem; }
+.prose-response p { margin-bottom: 0.75rem; }
+.prose-response code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background: rgba(99, 102, 241, 0.08);
+  color: #6366f1;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.dark .prose-response code {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+.prose-response pre {
+  background: #1e1e2e;
+  border-radius: 10px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 0.75rem;
+}
+.dark .prose-response pre { background: #0d0d14; }
+.prose-response pre code {
+  background: none;
+  color: #e2e8f0;
+  padding: 0;
+}
+.prose-response ul, .prose-response ol {
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.prose-response ul { list-style: disc; }
+.prose-response ol { list-style: decimal; }
+.prose-response li { margin-bottom: 0.25rem; }
+.prose-response strong { font-weight: 600; }
+.prose-response em { font-style: italic; }
+.prose-response blockquote {
+  border-left: 3px solid #6366f1;
+  padding-left: 1rem;
+  color: #6b7280;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+.dark .prose-response blockquote { color: #9ca3af; }
+.prose-response a { color: #6366f1; text-decoration: underline; }
+.dark .prose-response a { color: #a78bfa; }
+.prose-response hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1rem 0;
+}
+.dark .prose-response hr { border-top-color: #374151; }
+.prose-response table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0.75rem;
+  font-size: 0.8125rem;
+}
+.prose-response th, .prose-response td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.dark .prose-response th, .dark .prose-response td { border-color: #374151; }
+.prose-response th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+.dark .prose-response th { background: #1f2937; }
+
+/* ── Fade-in animation ────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fadeInUp 0.4s ease both; }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.15); }
+  50%       { box-shadow: 0 0 0 6px rgba(99, 102, 241, 0); }
+}
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* ── Typing dots ──────────────────────────────────────────── */
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1);   opacity: 1; }
+}
+.typing-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #6366f1;
+  animation: bounce-dot 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
